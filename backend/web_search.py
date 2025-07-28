@@ -8,7 +8,7 @@ SERPAPI_KEY = os.getenv("SERPAPI_API_KEY")
 
 def search_duckduckgo(query):
     if not SERPAPI_KEY:
-        return "❌ Clé API SerpAPI non trouvée."
+        return " Clé API SerpAPI non trouvée."
 
     try:
         # Configuration de la requête
@@ -24,16 +24,16 @@ def search_duckduckgo(query):
 
         # Construire un résumé textuel
         if not organic_results:
-            return "❌ Aucun résultat trouvé."
+            return " Aucun résultat trouvé."
 
         summary = ""
         for item in organic_results:
             title = item.get("title", "Sans titre")
             link = item.get("link", "Pas de lien")
             snippet = item.get("snippet", "Pas de description.")
-            summary += f"- 📌 **{title}**\n  🔗 {link}\n  📝 {snippet}\n\n"
+            summary += f"-  **{title}**\n  🔗 {link}\n   {snippet}\n\n"
 
         return summary.strip()
 
     except Exception as e:
-        return f"❌ Erreur SerpAPI : {str(e)}"
+        return f" Erreur SerpAPI : {str(e)}"
