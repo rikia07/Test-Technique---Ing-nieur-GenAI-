@@ -1,0 +1,32 @@
+name: Deploy FastAPI to Azure
+
+on:
+  push:
+    branches:
+      - main  # Ce workflow se déclenche quand on pousse sur la branche main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name:  Cloner le dépôt
+        uses: actions/checkout@v3
+
+      - name: Installer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Installer les dépendances
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Déployer sur Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: NOM_DE_TA_WEBAPP
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./backend
