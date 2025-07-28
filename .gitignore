@@ -1,0 +1,16 @@
+# Environnement virtuel Python
+venv/
+__pycache__/
+
+# Secrets
+.env
+
+# Node modules frontend
+frontend/node_modules/
+
+# Build React
+frontend/build/
+
+# IDE / OS
+.vscode/
+.DS_Store
